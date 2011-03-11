@@ -1,10 +1,10 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required(VERSION 2.8)
 
 set(BIN_NAME tankofdestiny)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_C_FLAGS "-g -O0 -Wall -Werror -pedantic -pedantic-errors")
 
-project (${BIN_NAME} C)
+project(${BIN_NAME} C)
 
 aux_source_directory(src SRC_FILES)
 
