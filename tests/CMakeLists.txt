@@ -6,7 +6,7 @@ project(Tests C)
 
 include_directories(include ${CMAKE_SOURCE_DIR}/include)
 
-add_executable(test_one src/test.c)
+add_executable(default_value src/default_value.c ${CMAKE_SOURCE_DIR}/src/init.c ${CMAKE_SOURCE_DIR}/src/quit.c)
 
 add_custom_target(test
-  COMMAND test_one)
+  COMMAND default_value)
