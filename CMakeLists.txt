@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 
 set(BIN_NAME tankofdestiny)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
-set(CMAKE_C_FLAGS "-g -O0 -Wall -Werror -pedantic -pedantic-errors")
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_C_FLAGS "-g -O0 -Wall -Wextra -Werror -pedantic -pedantic-errors")
 
 project(${BIN_NAME} C)
 
