@@ -15,6 +15,5 @@ add_executable(${BIN_NAME} ${SRC_FILES})
 # Run program
 add_custom_target(run ${BIN_NAME})
 
-# Removing all files which created cmake
-add_custom_target(clean_all rm -rf CMakeCache.txt
-  CMakeFiles cmake_install.cmake Makefile bin)
+# Added tests
+add_subdirectory(tests)
