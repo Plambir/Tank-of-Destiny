@@ -21,6 +21,7 @@
 #include <SDL/SDL.h>
 
 #include "context.h"
+#include "errors.h"
 
 struct context
 init();
