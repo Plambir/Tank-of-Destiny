@@ -18,6 +18,8 @@
 #ifndef INIT_H__
 #define INIT_H__
 
+#include <SDL/SDL.h>
+
 #include "context.h"
 
 struct context

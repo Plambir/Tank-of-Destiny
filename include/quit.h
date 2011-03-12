@@ -18,6 +18,8 @@
 #ifndef QUIT_H__
 #define QUIT_H__
 
+#include <SDL/SDL.h>
+
 #include "context.h"
 
 int
