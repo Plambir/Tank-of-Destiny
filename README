@@ -10,3 +10,7 @@ How to build:
 How to run:
 
     > make run
+
+How to run tests:
+
+    > make test
