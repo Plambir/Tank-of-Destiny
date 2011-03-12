@@ -42,7 +42,7 @@ main(int argc, char *argv[])
   (void)argc;
   (void)argv;
 
-  run_test("Init video set error", set_up, run, tear_down);
+  run_test("Error in init video", set_up, run, tear_down);
 
   return 0;
 }
