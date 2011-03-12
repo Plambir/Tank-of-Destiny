@@ -21,5 +21,8 @@ int
 quit(struct context ctx)
 {
   (void)ctx;
+
+  SDL_Quit();
+
   return 0;
 }

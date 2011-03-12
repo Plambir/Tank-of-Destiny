@@ -26,5 +26,15 @@ init()
   ctx.height = 480;
   ctx.bpp = 32;
 
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    {
+      fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
+      ctx.error = ERROR_UNABLE_INIT_VIDEO;
+    }
+  else
+    {
+      ctx.error = NO_ERROR;
+    }
+
   return ctx;
 }
