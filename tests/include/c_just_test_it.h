@@ -87,7 +87,7 @@ typedef void(*function)();
 void
 run_test(char *name, function set_up, function run, function tear_down)
 {
-  printf(":: %-30s", name);
+  fprintf(stdout, ":: %-30s", name);
   if(set_up)
     set_up();
   run();
