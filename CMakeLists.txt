@@ -10,7 +10,11 @@ aux_source_directory(src SRC_FILES)
 
 include_directories(include)
 
+add_definitions(-DD_GNU_SOURCE=1 -DD_REENTRANT)
+
 add_executable(${BIN_NAME} ${SRC_FILES})
+
+target_link_libraries(${BIN_NAME} SDL pthread)
 
 # Run program
 add_custom_target(run ${BIN_NAME})
