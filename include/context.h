@@ -18,11 +18,15 @@
 #ifndef CONTEXT_H__
 #define CONTEXT_H__
 
+#include "errors.h"
+
 struct context
 {
   int width;
   int height;
   int bpp;
+
+  enum ERRORS error;
 };
 
 #endif /* CONTEXT_H__ */
