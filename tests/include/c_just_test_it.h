@@ -81,9 +81,8 @@ typedef void(*function)();
 
 #define begin_assertions() int ret = 0
 
-#define end_assertions() do { \
-    if (!ret) fprintf(stdout, "%20s", "PASS"); } while(0); \
-  fprintf(stdout, "\n");
+#define end_assertions() if (!ret) fprintf(stdout, "%20s", "PASS"); \
+  fprintf(stdout, "\n")
 
 void
 run_test(char *name, function set_up, function run, function tear_down)
