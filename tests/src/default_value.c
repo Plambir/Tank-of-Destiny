@@ -17,6 +17,7 @@
 
 #include "c_just_test_it.h"
 
+#include "context.h"
 #include "init.h"
 #include "quit.h"
 
