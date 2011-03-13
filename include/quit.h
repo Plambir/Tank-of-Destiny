@@ -23,6 +23,6 @@
 #include "context.h"
 
 int
-quit(struct context ctx);
+quit(struct context *ctx);
 
 #endif /* QUIT_H__ */

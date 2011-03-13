@@ -22,7 +22,7 @@
 #include "quit.h"
 #include "errors.h"
 
-struct context game;
+struct context *game;
 
 void
 set_up();
@@ -55,7 +55,7 @@ run()
 {
   begin_assertions();
 
-  assert(game.error == NO_ERROR);
+  assert(game->error == NO_ERROR);
 
   end_assertions();
 }

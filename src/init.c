@@ -17,23 +17,30 @@
 
 #include "init.h"
 
-struct context
+struct context*
 init()
 {
-  struct context ctx;
+  struct context *ctx;
 
-  ctx.width = 640;
-  ctx.height = 480;
-  ctx.bpp = 32;
+  ctx = malloc(sizeof(struct context));
+  if (!ctx)
+    {
+      fprintf(stderr, "%s:%d: %s\n", __FILE__, __LINE__, strerror(errno));
+      exit(errno);
+    }
+
+  ctx->width = 640;
+  ctx->height = 480;
+  ctx->bpp = 32;
 
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
       fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
-      ctx.error = ERROR_UNABLE_INIT_VIDEO;
+      ctx->error = ERROR_UNABLE_INIT_VIDEO;
     }
   else
     {
-      ctx.error = NO_ERROR;
+      ctx->error = NO_ERROR;
     }
 
   return ctx;

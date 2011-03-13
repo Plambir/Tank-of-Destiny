@@ -18,9 +18,13 @@
 #include "quit.h"
 
 int
-quit(struct context ctx)
+quit(struct context *ctx)
 {
-  (void)ctx;
+  if (ctx)
+    {
+      free(ctx);
+      ctx = NULL;
+    }
 
   SDL_Quit();
 

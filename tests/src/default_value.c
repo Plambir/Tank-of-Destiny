@@ -21,7 +21,7 @@
 #include "init.h"
 #include "quit.h"
 
-struct context game;
+struct context *game;
 
 void
 set_up();
@@ -54,9 +54,9 @@ run()
 {
   begin_assertions();
 
-  assert(game.width == 640);
-  assert(game.height == 480);
-  assert(game.bpp == 32 );
+  assert(game->width == 640);
+  assert(game->height == 480);
+  assert(game->bpp == 32 );
 
   end_assertions();
 }

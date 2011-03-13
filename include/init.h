@@ -20,10 +20,13 @@
 
 #include <SDL/SDL.h>
 
+#include <string.h>
+#include <errno.h>
+
 #include "context.h"
 #include "errors.h"
 
-struct context
+struct context*
 init();
 
 #endif /* INIT_H__ */

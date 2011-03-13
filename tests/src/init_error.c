@@ -22,7 +22,7 @@
 #include "quit.h"
 #include "errors.h"
 
-struct context game;
+struct context *game;
 
 void
 set_up();
@@ -64,7 +64,7 @@ run()
 {
   begin_assertions();
 
-  assert(game.error == ERROR_UNABLE_INIT_VIDEO);
+  assert(game->error == ERROR_UNABLE_INIT_VIDEO);
 
   end_assertions();
 }
