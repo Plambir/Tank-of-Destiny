@@ -47,16 +47,11 @@ main(int argc, char *argv[])
 void
 set_up()
 {
-  FILE *tmp;
-
-  tmp = stderr;
-  stderr = fopen("/dev/null", "w");
+  silence_begin();
 
   game = init();
 
-  fclose(stderr);
-
-  stderr = tmp;
+  silence_end();
 }
 
 void
