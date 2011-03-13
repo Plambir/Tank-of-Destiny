@@ -25,7 +25,7 @@ init()
   ctx = malloc(sizeof(struct context));
   if (!ctx)
     {
-      fprintf(stderr, "%s:%d: %s\n", __FILE__, __LINE__, strerror(errno));
+      fprintf(stderr, "%s\n", strerror(errno));
       exit(errno);
     }
 
