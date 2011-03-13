@@ -6,8 +6,6 @@ project(Tests C)
 
 include_directories(include ${CMAKE_SOURCE_DIR}/include)
 
-add_definitions(-DD_GNU_SOURCE=1 -DD_REENTRANT)
-
 set(INIT_QUIT ${CMAKE_SOURCE_DIR}/src/init.c ${CMAKE_SOURCE_DIR}/src/quit.c)
 set(STUB_SDL_QUIT_AND_GET_ERROR src/stub_sdl_quit.c src/stub_sdl_get_error.c)
 set(STUB_SDL_INIT src/stub_sdl_init.c)
