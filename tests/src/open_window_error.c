@@ -15,15 +15,59 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <SDL/SDL.h>
+#include "c_just_test_it.h"
 
-SDL_Surface*
-SDL_SetVideoMode(int width, int height, int bitsperpixel, Uint32 flags)
+#include "context.h"
+#include "init.h"
+#include "open_window.h"
+#include "quit.h"
+#include "errors.h"
+
+struct context *game;
+
+void
+set_up();
+
+void
+run();
+
+void
+tear_down();
+
+int
+main(int argc, char *argv[])
 {
-  (void)width;
-  (void)height;
-  (void)bitsperpixel;
-  (void)flags;
+  (void)argc;
+  (void)argv;
 
-  return (SDL_Surface*)1;
+  run_test("Error in open window", set_up, run, tear_down);
+
+  return 0;
+}
+
+void
+set_up()
+{
+  silence_begin();
+
+  game = init();
+  open_window(game);
+
+  silence_end();
+}
+
+void
+run()
+{
+  begin_assertions();
+
+  assert(game->error == ERROR_OPEN_WINDOW);
+
+  end_assertions();
+}
+
+void
+tear_down()
+{
+  quit(game);
 }

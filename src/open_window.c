@@ -20,6 +20,14 @@
 int
 open_window(struct context *ctx)
 {
-  (void)ctx;
-  return 0;
+  if (!SDL_SetVideoMode(ctx->width,
+                        ctx->height,
+                        ctx->bpp,
+                        SDL_OPENGL | SDL_GL_DOUBLEBUFFER))
+    {
+      fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
+      ctx->error = ERROR_OPEN_WINDOW;
+    }
+
+  return ctx->error;
 }

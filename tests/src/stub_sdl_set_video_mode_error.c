@@ -25,5 +25,5 @@ SDL_SetVideoMode(int width, int height, int bitsperpixel, Uint32 flags)
   (void)bitsperpixel;
   (void)flags;
 
-  return (SDL_Surface*)1;
+  return (SDL_Surface*)NULL;
 }

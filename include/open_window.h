@@ -18,6 +18,8 @@
 #ifndef OPEN_WINDOW_H__
 #define OPEN_WINDOW_H__
 
+#include <SDL/SDL.h>
+
 #include "context.h"
 
 int
