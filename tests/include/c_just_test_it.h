@@ -84,6 +84,9 @@ typedef void(*function)();
 #define end_assertions() if (!ret) fprintf(stdout, "%20s", "PASS"); \
   fprintf(stdout, "\n")
 
+#define silence_begin() FILE *tmp; tmp = stderr; stderr = fopen("/dev/null", "w")
+#define silence_end() fclose(stderr);  stderr = tmp
+
 void
 run_test(char *name, function set_up, function run, function tear_down)
 {
