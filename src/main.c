@@ -15,13 +15,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "print.h"
+#include "context.h"
+#include "init.h"
+#include "open_window.h"
+#include "quit.h"
+#include "errors.h"
 
 int
 main(int argc, char *argv[])
 {
+  struct context *game;
+
   (void)argc;
   (void)argv;
-  print();
-  return 0;
+
+  game = init();
+  if (game->error)
+    {
+      quit(game);
+      return EXIT_FAILURE;
+    }
+
+  open_window(game);
+  if (game->error)
+    {
+      quit(game);
+      return EXIT_FAILURE;
+    }
+
+  quit(game);
+
+  return EXIT_SUCCESS;
 }
