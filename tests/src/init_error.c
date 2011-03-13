@@ -15,9 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <unistd.h>
-#include <fcntl.h>
-
 #include "c_just_test_it.h"
 
 #include "context.h"
