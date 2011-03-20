@@ -15,20 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CONTEXT_H__
-#define CONTEXT_H__
+#include "main_loop.h"
 
-#include "errors.h"
-#include "status.h"
-
-struct context
+void
+main_loop(struct context *game)
 {
-  int width;
-  int height;
-  int bpp;
-
-  enum ERRORS error;
-  enum STATUS status;
-};
-
-#endif /* CONTEXT_H__ */
+  game->status = END;
+}

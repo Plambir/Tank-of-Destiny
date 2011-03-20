@@ -15,20 +15,64 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CONTEXT_H__
-#define CONTEXT_H__
+#include "c_just_test_it.h"
 
+#include "context.h"
+#include "init.h"
+#include "open_window.h"
+#include "quit.h"
 #include "errors.h"
-#include "status.h"
+#include "main_loop.h"
 
-struct context
+struct context *game;
+
+void
+set_up();
+
+void
+run_begin_and_end();
+
+void
+tear_down();
+
+int
+main(int argc, char *argv[])
 {
-  int width;
-  int height;
-  int bpp;
+  (void)argc;
+  (void)argv;
 
-  enum ERRORS error;
-  enum STATUS status;
-};
+  run_test("[main loop] WORK, DONE, END",
+           set_up, run_begin_and_end, tear_down);
 
-#endif /* CONTEXT_H__ */
+  return 0;
+}
+
+void
+set_up()
+{
+  game = init();
+  open_window(game);
+}
+
+void
+run_begin_and_end()
+{
+  begin_assertions();
+
+  assert(game->status == WORK);
+
+  game->status = DONE;
+
+  main_loop(game);
+
+  assert(game->status == END);
+  assert(game->error == NO_ERROR);
+
+  end_assertions();
+}
+
+void
+tear_down()
+{
+  quit(game);
+}

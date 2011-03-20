@@ -45,10 +45,24 @@ add_executable(open_window_error
   src/stub_sdl_set_video_mode_error.c
   ${CMAKE_SOURCE_DIR}/src/open_window.c)
 
+add_executable(main_loop
+  src/main_loop.c
+  ${INIT_QUIT}
+  ${STUB_SDL_QUIT_AND_GET_ERROR}
+  ${STUB_SDL_INIT}
+  src/stub_sdl_set_video_mode.c
+  ${CMAKE_SOURCE_DIR}/src/open_window.c
+  ${CMAKE_SOURCE_DIR}/src/main_loop.c)
+
+set(DEPENDS
+  default_value init init_error open_window open_window_error
+  main_loop)
+
 add_custom_target(test
   COMMAND default_value
   COMMAND init
   COMMAND init_error
   COMMAND open_window
   COMMAND open_window_error
-  DEPENDS default_value init init_error open_window open_window_error)
+  COMMAND main_loop
+  DEPENDS ${DEPENDS})

@@ -15,20 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CONTEXT_H__
-#define CONTEXT_H__
+#ifndef STATUS_H__
+#define STATUS_H__
 
-#include "errors.h"
-#include "status.h"
+typedef enum STATUS
+  {
+    WORK,
+    DONE,
+    END
+  } STATUS;
 
-struct context
-{
-  int width;
-  int height;
-  int bpp;
-
-  enum ERRORS error;
-  enum STATUS status;
-};
-
-#endif /* CONTEXT_H__ */
+#endif /* STATUS_H__ */
