@@ -20,6 +20,9 @@
 
 #include "errors.h"
 #include "status.h"
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
 
 struct context
 {
@@ -29,6 +32,8 @@ struct context
 
   enum ERRORS error;
   enum STATUS status;
+
+  lua_State *lua;
 };
 
 #endif /* CONTEXT_H__ */

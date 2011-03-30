@@ -43,5 +43,16 @@ init()
       ctx->error = NO_ERROR;
     }
 
+  ctx->lua = luaL_newstate();
+  if (!ctx->lua)
+    {
+      fprintf(stderr,
+              "%s:%d: %s\n",
+              __FILE__, __LINE__, strerror(errno));
+      exit(errno);
+    }
+
+  context_lua_register(ctx);
+
   return ctx;
 }

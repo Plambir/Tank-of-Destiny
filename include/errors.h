@@ -22,7 +22,8 @@ enum ERRORS
   {
     NO_ERROR,
     ERROR_UNABLE_INIT_VIDEO,
-    ERROR_OPEN_WINDOW
+    ERROR_OPEN_WINDOW,
+    ERROR_LUA
   };
 
 #endif /* ERRORS_H__ */

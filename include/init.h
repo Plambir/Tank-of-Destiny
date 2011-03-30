@@ -23,7 +23,12 @@
 #include <string.h>
 #include <errno.h>
 
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
+
 #include "context.h"
+#include "context_lua.h"
 #include "errors.h"
 
 struct context*
