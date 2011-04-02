@@ -17,12 +17,8 @@
 
 #include "c_just_test_it.h"
 
-#include "context.h"
-#include "context_lua.h"
-#include "init.h"
-#include "quit.h"
+#include "core.h"
 #include "script.h"
-#include "script_call.h"
 
 struct context *game;
 
@@ -50,7 +46,7 @@ main(int argc, char *argv[])
 void
 set_up()
 {
-  game = init();
+  game = init_all();
 }
 
 void
@@ -62,8 +58,8 @@ run()
   assert(game->height == 480);
   assert(game->bpp == 32);
 
-  script(game, FULL_PATH_TO_SCRIPTS"/context_lua_bind.lua");
-  script_call(game, "call");
+  script_load(game, FULL_PATH_TO_SCRIPTS"/context_lua_bind.lua");
+  script_call_function(game, "call");
 
   assert(game->width == 0);
   assert(game->height == 1);

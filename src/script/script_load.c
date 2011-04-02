@@ -15,16 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "context_lua.h"
+#include "script.h"
 
-int
-context_lua_set_bpp(lua_State *lua)
+void
+script_load(struct context *ctx, char* file_name)
 {
-  int bpp;
-  struct context_lua *ctx_lua;
-  script_check_arg_number(lua, 2);
-  bpp = luaL_checkint(lua, 2);
-  ctx_lua = context_lua_check(lua, 1);
-  ctx_lua->ctx->bpp = bpp;
-  return 0;
+  if (luaL_dofile(ctx->lua, file_name))
+    {
+      fprintf(stderr,
+              "%s:%d: %s\n",
+              __FILE__, __LINE__, lua_tostring(ctx->lua, 1));
+      ctx->error = ERROR_LUA;
+    }
 }

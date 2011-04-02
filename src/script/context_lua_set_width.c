@@ -15,18 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "script_check_arg_number.h"
+#include "script.h"
 
-void
-script_check_arg_number(lua_State *lua, int n)
+int
+context_lua_set_width(lua_State *lua)
 {
-  int top = lua_gettop(lua);
-  if (top != n)
-    {
-      lua_Debug dbg;
-      lua_getinfo(lua, "Sl", &dbg);
-      lua_pushfstring(lua, "%s:%d: error: got %d, expected %d",
-                      dbg.short_src, dbg.currentline, top, n);
-      lua_error(lua);
-    }
+  int width;
+  struct context_lua *ctx_lua;
+  script_check_arg_number(lua, 2);
+  width = luaL_checkint(lua, 2);
+  ctx_lua = context_lua_check(lua, 1);
+  ctx_lua->ctx->width = width;
+  return 0;
 }

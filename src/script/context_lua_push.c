@@ -15,42 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CONTEXT_LUA_H__
-#define CONTEXT_LUA_H__
+#include "script.h"
 
-#include "context.h"
-#include "script_check_arg_number.h"
-
-struct context_lua
+void
+context_lua_push(struct context *ctx)
 {
-  struct context *ctx;
-};
-
-void
-context_lua_push(struct context *ctx);
-
-void
-context_lua_register(struct context *ctx);
-
-struct context_lua*
-context_lua_check(lua_State *lua, int index);
-
-int
-context_lua_get_width(lua_State *lua);
-
-int
-context_lua_get_height(lua_State *lua);
-
-int
-context_lua_get_bpp(lua_State *lua);
-
-int
-context_lua_set_width(lua_State *lua);
-
-int
-context_lua_set_height(lua_State *lua);
-
-int
-context_lua_set_bpp(lua_State *lua);
-
-#endif /* CONTEXT_LUA_H__ */
+  struct context_lua *ctx_lua = (struct context_lua*)lua_newuserdata(ctx->lua, sizeof(struct context_lua));
+  luaL_getmetatable(ctx->lua, "context");
+  lua_setmetatable(ctx->lua, -2);
+  ctx_lua->ctx = ctx;
+}

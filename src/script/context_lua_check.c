@@ -15,14 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "context_lua.h"
+#include "script.h"
 
-int
-context_lua_get_bpp(lua_State *lua)
+struct context_lua*
+context_lua_check(lua_State *lua, int index)
 {
   struct context_lua *ctx_lua;
-  script_check_arg_number(lua, 1);
-  ctx_lua = context_lua_check(lua, 1);
-  lua_pushnumber(lua, ctx_lua->ctx->bpp);
-  return 1;
+  luaL_checktype(lua, index, LUA_TUSERDATA);
+  ctx_lua = (struct context_lua*)luaL_checkudata(lua, index, "context");
+  if (ctx_lua == NULL)
+    luaL_typerror(lua, index, "context");
+  return ctx_lua;
 }

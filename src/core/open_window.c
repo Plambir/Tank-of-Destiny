@@ -15,44 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "init.h"
+#include "core.h"
 
-struct context*
-init()
+int
+open_window(struct context *ctx)
 {
-  struct context *ctx;
-
-  ctx = malloc(sizeof(struct context));
-  if (!ctx)
+  if (!SDL_SetVideoMode(ctx->width,
+                        ctx->height,
+                        ctx->bpp,
+                        SDL_OPENGL | SDL_GL_DOUBLEBUFFER))
     {
-      fprintf(stderr, "%s\n", strerror(errno));
-      exit(errno);
+      fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
+      ctx->error = ERROR_OPEN_WINDOW;
     }
 
-  ctx->width = 640;
-  ctx->height = 480;
-  ctx->bpp = 32;
-
-  if (SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-      fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
-      ctx->error = ERROR_UNABLE_INIT_VIDEO;
-    }
-  else
-    {
-      ctx->error = NO_ERROR;
-    }
-
-  ctx->lua = luaL_newstate();
-  if (!ctx->lua)
-    {
-      fprintf(stderr,
-              "%s:%d: %s\n",
-              __FILE__, __LINE__, strerror(errno));
-      exit(errno);
-    }
-
-  context_lua_register(ctx);
-
-  return ctx;
+  return ctx->error;
 }

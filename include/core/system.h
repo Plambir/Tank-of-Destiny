@@ -15,16 +15,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "context_lua.h"
+#ifndef SYSTEM_H__
+#define SYSTEM_H__
+
+#include <SDL/SDL.h>
+
+#include <string.h>
+#include <errno.h>
+
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
+
+#include "context.h"
+
+struct context*
+init_all();
+
+struct context*
+init_core();
+
+struct context*
+init_sdl();
+
+struct context*
+init_lua();
+
+void
+main_loop(struct context *game);
 
 int
-context_lua_set_height(lua_State *lua)
-{
-  int height;
-  struct context_lua *ctx_lua;
-  script_check_arg_number(lua, 2);
-  height = luaL_checkint(lua, 2);
-  ctx_lua = context_lua_check(lua, 1);
-  ctx_lua->ctx->height = height;
-  return 0;
-}
+open_window(struct context *ctx);
+
+int
+quit(struct context *ctx);
+
+#endif /* SYSTEM_H__ */

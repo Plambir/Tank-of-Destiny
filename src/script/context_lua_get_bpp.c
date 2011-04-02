@@ -15,14 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef OPEN_WINDOW_H__
-#define OPEN_WINDOW_H__
-
-#include <SDL/SDL.h>
-
-#include "context.h"
+#include "script.h"
 
 int
-open_window(struct context *ctx);
-
-#endif /* OPEN_WINDOW_H__ */
+context_lua_get_bpp(lua_State *lua)
+{
+  struct context_lua *ctx_lua;
+  script_check_arg_number(lua, 1);
+  ctx_lua = context_lua_check(lua, 1);
+  lua_pushnumber(lua, ctx_lua->ctx->bpp);
+  return 1;
+}

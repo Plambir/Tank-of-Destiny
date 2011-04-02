@@ -18,12 +18,7 @@
 #ifndef SCRIPT_H__
 #define SCRIPT_H__
 
-#include "context.h"
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
-
-void
-script(struct context *ctx, char *file_name);
+#include "script/context_lua.h"
+#include "script/script_function.h"
 
 #endif /* SCRIPT_H__ */

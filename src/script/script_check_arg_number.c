@@ -15,13 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "context_lua.h"
+#include "script.h"
 
 void
-context_lua_push(struct context *ctx)
+script_check_arg_number(lua_State *lua, int n)
 {
-  struct context_lua *ctx_lua = (struct context_lua*)lua_newuserdata(ctx->lua, sizeof(struct context_lua));
-  luaL_getmetatable(ctx->lua, "context");
-  lua_setmetatable(ctx->lua, -2);
-  ctx_lua->ctx = ctx;
+  int top = lua_gettop(lua);
+  if (top != n)
+    {
+      lua_Debug dbg;
+      lua_getinfo(lua, "Sl", &dbg);
+      lua_pushfstring(lua, "%s:%d: error: got %d, expected %d",
+                      dbg.short_src, dbg.currentline, top, n);
+      lua_error(lua);
+    }
 }

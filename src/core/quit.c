@@ -15,15 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "context_lua.h"
+#include "core.h"
 
-struct context_lua*
-context_lua_check(lua_State *lua, int index)
+int
+quit(struct context *ctx)
 {
-  struct context_lua *ctx_lua;
-  luaL_checktype(lua, index, LUA_TUSERDATA);
-  ctx_lua = (struct context_lua*)luaL_checkudata(lua, index, "context");
-  if (ctx_lua == NULL)
-    luaL_typerror(lua, index, "context");
-  return ctx_lua;
+  lua_close(ctx->lua);
+
+  if (ctx)
+    {
+      free(ctx);
+      ctx = NULL;
+    }
+
+  SDL_Quit();
+
+  return 0;
 }

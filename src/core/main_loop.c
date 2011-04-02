@@ -15,13 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SCRIPT_CHECK_ARG_NUMBER_H__
-#define SCRIPT_CHECK_ARG_NUMBER_H__
-
-#include "script.h"
+#include "core.h"
 
 void
-script_check_arg_number(lua_State *lua, int n);
-
-
-#endif /* SCRIPT_CHECK_ARG_NUMBER_H__ */
+main_loop(struct context *game)
+{
+  game->status = END;
+}

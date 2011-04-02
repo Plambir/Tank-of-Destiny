@@ -15,10 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "main_loop.h"
+#include "script.h"
 
-void
-main_loop(struct context *game)
+int
+context_lua_get_height(lua_State *lua)
 {
-  game->status = END;
+  struct context_lua *ctx_lua;
+  script_check_arg_number(lua, 1);
+  ctx_lua = context_lua_check(lua, 1);
+  lua_pushnumber(lua, ctx_lua->ctx->height);
+  return 1;
 }

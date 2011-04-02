@@ -15,17 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SCRIPT_CALL_H__
-#define SCRIPT_CALL_H__
+#ifndef CORE_H__
+#define CORE_H__
 
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
+#include "core/context.h"
+#include "core/errors.h"
+#include "core/system.h"
+#include "core/status.h"
 
-#include "context.h"
-#include "context_lua.h"
-
-void
-script_call(struct context *ctx, char* function_name);
-
-#endif /* SCRIPT_CALL_H__ */
+#endif /* CORE_H__ */

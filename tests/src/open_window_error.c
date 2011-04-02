@@ -17,11 +17,7 @@
 
 #include "c_just_test_it.h"
 
-#include "context.h"
-#include "init.h"
-#include "open_window.h"
-#include "quit.h"
-#include "errors.h"
+#include "core.h"
 
 struct context *game;
 
@@ -50,7 +46,7 @@ set_up()
 {
   silence_begin();
 
-  game = init();
+  game = init_all();
   open_window(game);
 
   silence_end();

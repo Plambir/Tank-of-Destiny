@@ -15,12 +15,45 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAIN_LOOP_H__
-#define MAIN_LOOP_H__
+#include "core.h"
+#include "script.h"
 
-#include "context.h"
+struct context*
+init_all()
+{
+  struct context *ctx;
 
-void
-main_loop(struct context *game);
+  ctx = malloc(sizeof(struct context));
+  if (!ctx)
+    {
+      fprintf(stderr, "%s\n", strerror(errno));
+      exit(errno);
+    }
 
-#endif /* MAIN_LOOP_H__ */
+  ctx->width = 640;
+  ctx->height = 480;
+  ctx->bpp = 32;
+
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    {
+      fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
+      ctx->error = ERROR_UNABLE_INIT_VIDEO;
+    }
+  else
+    {
+      ctx->error = NO_ERROR;
+    }
+
+  ctx->lua = luaL_newstate();
+  if (!ctx->lua)
+    {
+      fprintf(stderr,
+              "%s:%d: %s\n",
+              __FILE__, __LINE__, strerror(errno));
+      exit(errno);
+    }
+
+  context_lua_register(ctx);
+
+  return ctx;
+}

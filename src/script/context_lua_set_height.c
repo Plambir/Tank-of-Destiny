@@ -15,16 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "context_lua.h"
+#include "script.h"
 
 int
-context_lua_set_width(lua_State *lua)
+context_lua_set_height(lua_State *lua)
 {
-  int width;
+  int height;
   struct context_lua *ctx_lua;
   script_check_arg_number(lua, 2);
-  width = luaL_checkint(lua, 2);
+  height = luaL_checkint(lua, 2);
   ctx_lua = context_lua_check(lua, 1);
-  ctx_lua->ctx->width = width;
+  ctx_lua->ctx->height = height;
   return 0;
 }

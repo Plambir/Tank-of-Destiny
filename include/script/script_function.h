@@ -15,19 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "open_window.h"
+#ifndef SCRIPT_FUNCTION_H__
+#define SCRIPT_FUNCTION_H__
 
-int
-open_window(struct context *ctx)
-{
-  if (!SDL_SetVideoMode(ctx->width,
-                        ctx->height,
-                        ctx->bpp,
-                        SDL_OPENGL | SDL_GL_DOUBLEBUFFER))
-    {
-      fprintf(stderr, "Unable to set video mode: %s\n", SDL_GetError());
-      ctx->error = ERROR_OPEN_WINDOW;
-    }
+#include "core/context.h"
 
-  return ctx->error;
-}
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
+
+void
+script_load(struct context *ctx, char *file_name);
+
+void
+script_call_function(struct context *ctx, char* function_name);
+
+void
+script_check_arg_number(lua_State *lua, int n);
+
+#endif /* SCRIPT_FUNCTION_H__ */

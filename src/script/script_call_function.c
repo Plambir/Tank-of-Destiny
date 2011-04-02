@@ -15,20 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "quit.h"
+#include "script.h"
 
-int
-quit(struct context *ctx)
+void
+script_call_function(struct context *ctx, char *function_name)
 {
-  lua_close(ctx->lua);
-
-  if (ctx)
-    {
-      free(ctx);
-      ctx = NULL;
-    }
-
-  SDL_Quit();
-
-  return 0;
+  lua_getfield(ctx->lua, LUA_GLOBALSINDEX, function_name);
+  context_lua_push(ctx);
+  lua_call(ctx->lua, 1, 0);
 }
