@@ -19,21 +19,17 @@
 #include "script.h"
 
 struct context*
-init_all()
+init_sdl(struct context* ctx)
 {
-  struct context *ctx;
-
-  ctx = create_context();
-
-  ctx = init_sdl(ctx);
-
-  if (ctx->error == ERROR_UNABLE_INIT_VIDEO)
+  if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
-      free(ctx);
-      exit(ERROR_UNABLE_INIT_VIDEO);
+      fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
+      ctx->error = ERROR_UNABLE_INIT_VIDEO;
     }
-
-  ctx = init_lua(ctx);
+  else
+    {
+      ctx->error = NO_ERROR;
+    }
 
   return ctx;
 }

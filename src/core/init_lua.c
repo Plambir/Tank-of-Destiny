@@ -19,21 +19,18 @@
 #include "script.h"
 
 struct context*
-init_all()
+init_lua(struct context* ctx)
 {
-  struct context *ctx;
-
-  ctx = create_context();
-
-  ctx = init_sdl(ctx);
-
-  if (ctx->error == ERROR_UNABLE_INIT_VIDEO)
+  ctx->lua = luaL_newstate();
+  if (!ctx->lua)
     {
-      free(ctx);
-      exit(ERROR_UNABLE_INIT_VIDEO);
+      fprintf(stderr,
+              "%s:%d: %s\n",
+              __FILE__, __LINE__, strerror(errno));
+      exit(errno);
     }
 
-  ctx = init_lua(ctx);
+  context_lua_register(ctx);
 
   return ctx;
 }

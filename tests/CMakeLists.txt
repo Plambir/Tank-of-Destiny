@@ -21,16 +21,8 @@ add_executable(init
   src/init.c
   ${SRC_FILES})
 
-add_executable(init_error
-  src/init_error.c
-  ${SRC_FILES})
-
 add_executable(open_window
   src/open_window.c
-  ${SRC_FILES})
-
-add_executable(open_window_error
-  src/open_window_error.c
   ${SRC_FILES})
 
 add_executable(main_loop

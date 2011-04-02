@@ -19,21 +19,20 @@
 #include "script.h"
 
 struct context*
-init_all()
+create_context()
 {
   struct context *ctx;
 
-  ctx = create_context();
-
-  ctx = init_sdl(ctx);
-
-  if (ctx->error == ERROR_UNABLE_INIT_VIDEO)
+  ctx = malloc(sizeof(struct context));
+  if (!ctx)
     {
-      free(ctx);
-      exit(ERROR_UNABLE_INIT_VIDEO);
+      fprintf(stderr, "%s\n", strerror(errno));
+      exit(errno);
     }
 
-  ctx = init_lua(ctx);
+  ctx->width = 640;
+  ctx->height = 480;
+  ctx->bpp = 32;
 
   return ctx;
 }

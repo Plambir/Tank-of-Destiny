@@ -33,13 +33,13 @@ struct context*
 init_all();
 
 struct context*
-init_core();
+create_context();
 
 struct context*
-init_sdl();
+init_sdl(struct context* ctx);
 
 struct context*
-init_lua();
+init_lua(struct context* ctx);
 
 void
 main_loop(struct context *game);
