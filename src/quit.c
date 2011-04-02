@@ -20,6 +20,8 @@
 int
 quit(struct context *ctx)
 {
+  lua_close(ctx->lua);
+
   if (ctx)
     {
       free(ctx);
