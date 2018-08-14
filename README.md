@@ -2,7 +2,7 @@ Tank of Destiny
 
 Simple game.
 
-*Don't work now!*
+**Don't work now!**
 
 I returned to this project after 8 years.
 
