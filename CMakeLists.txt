@@ -1,23 +1,21 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.11)
+
+project("Tank Of Destiny")
 
 set(BIN_NAME tankofdestiny)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-set(CMAKE_C_FLAGS "-g -O0 -Wall -Wextra -Werror -pedantic -pedantic-errors")
 
 project(${BIN_NAME} C)
 
 aux_source_directory(src SRC_FILES)
 
-include_directories(include)
-
-add_definitions(-DD_GNU_SOURCE=1 -DD_REENTRANT)
-
 add_executable(${BIN_NAME} ${SRC_FILES})
 
-target_link_libraries(${BIN_NAME} SDL pthread)
+target_link_libraries(${BIN_NAME})
+
+set_property(TARGET ${BIN_NAME} PROPERTY C_STANDARD 99)
+
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -DDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Wall")
 
 # Run program
 add_custom_target(run ${BIN_NAME})
-
-# Added tests
-add_subdirectory(tests)

@@ -1,5 +1,5 @@
 /* Tank of Destiny
- * Copyright (C) 2011  Alexander A. Prusov
+ * Copyright (C) 2018  Alexander A. Prusov
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,16 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "script.h"
+#ifndef LOG_H__
+#define LOG_H__
 
-void
-script_load(struct context *ctx, char* file_name)
-{
-  if (luaL_dofile(ctx->lua, file_name))
-    {
-      fprintf(stderr,
-              "%s:%d: %s\n",
-              __FILE__, __LINE__, lua_tostring(ctx->lua, 1));
-      ctx->error = ERROR_LUA;
-    }
-}
+#include <stdio.h>
+
+#ifdef DEBUG
+#define log(msg, ...) printf("%s:%d:info: " msg "\n", __FILE__, __LINE__ __VA_ARGS__)
+#else
+#define log(...)
+#endif
+
+#endif /* LOG_H__ */
