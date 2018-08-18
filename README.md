@@ -2,19 +2,16 @@ Tank of Destiny
 
 Simple game.
 
-**Don't work now!**
-
 I returned to this project after 8 years.
+
+Dependens:
+    - https://www.glfw.org/
 
 How to build:
 
-    > cmake .
-    > make
-
-How to run:
-
-    > make run
-
-How to run tests:
-
-    > make test
+```
+    mkdir build
+    cd build
+    cmake ..
+    make
+```

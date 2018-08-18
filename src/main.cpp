@@ -15,15 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "log.h"
+#include "log.hpp"
+#include "window.hpp"
 #include <stdlib.h>
+#include <GLFW/glfw3.h>
 
 int main(int argc, char *argv[])
 {
   (void)argc;
   (void)argv;
 
-  log("Hello World!");
+  log("Init!");
+
+  game::Window window;
+  window.open(640, 480, "My Title");
+  while(window.is_open())
+  {
+    if(window.is_key_press(game::ActionKey::ESC))
+      window.close();
+    window.swap_buffer();
+    window.poll_events();
+  }
+
+  log("Terminate!");
 
   return EXIT_SUCCESS;
 }
